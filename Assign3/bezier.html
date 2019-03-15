@@ -1,0 +1,46 @@
+﻿<html>
+
+<script id="vertex-shader" type="GLSL">
+    // an attribute will receive data from a buffer
+    attribute vec4 position;
+    uniform mat4 Pmatrix;
+    uniform mat4 Vmatrix;
+    uniform mat4 Mmatrix;
+    attribute vec3 color;
+    varying vec3 fColor;
+
+    // all shaders have a main function
+    void main() {
+        // gl_Position is a special variable a vertex shader
+        // is responsible for setting
+        gl_Position = Pmatrix * Vmatrix * Mmatrix * position;
+        fColor = color;
+        gl_PointSize = 10.0;
+    }
+
+</script>
+
+<script id="fragment-shader" type="GLSL">
+    // fragment shaders don't have a default precision so we need
+    // to pick one. mediump is a good default
+    precision mediump float;
+    varying vec3 fColor;
+
+    void main() {
+        // gl_FragColor is a special variable a fragment shader
+        // is responsible for setting
+        gl_FragColor = vec4(fColor, 1.);
+        //gl_FragColor = vec4(0, 0, 1, 1.);
+    }
+
+</script>
+
+
+<body>
+    <canvas id="c" width="1280" height="720"></canvas>
+    <script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+    <script type="text/javascript" src="bezier.js"></script>
+</body>
+
+</html>
