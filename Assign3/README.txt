@@ -10,3 +10,7 @@ in its current state. It seems that I would likely want to use Three.js and rayc
 to figure out if the cursor intersects any points.
 
 You can still manually change the control point coordinates in Bezier.js under "var control"
+
+You can also change the number of points on the surface patch by changing the number of rows/columns.
+
+I tested this by opening bezier.html in Firefox as well as Chromium.
